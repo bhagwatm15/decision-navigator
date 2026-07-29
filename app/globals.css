@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+:root {
+  --color-cloud: #f6f9fb;
+  --color-white: #ffffff;
+  --color-clear-sky: #4fa8d8;
+  --color-aqua-glass: #5fd6c4;
+  --color-marigold: #e8a33d;
+  --color-deep-slate: #24344d;
+  --color-mist: #c7d6e0;
+}
+
+@theme inline {
+  --color-background: var(--color-cloud);
+  --color-foreground: var(--color-deep-slate);
+  --color-surface: var(--color-white);
+  --color-accent-sky: var(--color-clear-sky);
+  --color-accent-aqua: var(--color-aqua-glass);
+  --color-accent-marigold: var(--color-marigold);
+  --color-border-mist: var(--color-mist);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-fraunces);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+body {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--color-clear-sky) 45%, white) 0%,
+    color-mix(in srgb, var(--color-aqua-glass) 25%, white) 28%,
+    var(--color-cloud) 50%,
+    color-mix(in srgb, var(--color-marigold) 30%, white) 72%,
+    color-mix(in srgb, var(--color-marigold) 48%, white) 100%
+  );
+  background-attachment: fixed;
+  color: var(--color-deep-slate);
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-fraunces), serif;
+}
+
+.tag-card {
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-width: 1.5px;
+  border-style: solid;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.tag-card-sky {
+  background: color-mix(in srgb, var(--color-clear-sky) 14%, white);
+  border-color: var(--color-clear-sky);
+  color: color-mix(in srgb, var(--color-clear-sky) 55%, var(--color-deep-slate));
+}
+
+.tag-card-marigold {
+  background: color-mix(in srgb, var(--color-marigold) 16%, white);
+  border-color: var(--color-marigold);
+  color: color-mix(in srgb, var(--color-marigold) 55%, var(--color-deep-slate));
+}
+
+.tag-card-aqua {
+  background: color-mix(in srgb, var(--color-aqua-glass) 16%, white);
+  border-color: var(--color-aqua-glass);
+  color: color-mix(in srgb, var(--color-aqua-glass) 55%, var(--color-deep-slate));
+}
+
+.tag-card-irreversible {
+  background: color-mix(in srgb, var(--color-deep-slate) 8%, white);
+  border-color: var(--color-deep-slate);
+  color: var(--color-deep-slate);
+}
+
+.card {
+  background: var(--color-white);
+  border: 1.5px solid var(--color-mist);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: var(--color-clear-sky);
+  color: white;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--color-clear-sky) 45%, transparent);
+  transition: opacity 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover:not(:disabled) {
+  opacity: 0.92;
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--color-clear-sky) 55%, transparent);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-primary:disabled {
+  background: var(--color-mist);
+  color: color-mix(in srgb, var(--color-deep-slate) 45%, white);
+  box-shadow: none;
+  cursor: not-allowed;
+}
