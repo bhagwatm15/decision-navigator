@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import ResultsView from "@/components/ResultsView";
+import { MAX_CLARIFYING_QUESTIONS } from "@/lib/prompts";
 import type { AnalysisResult, ClarifyResponse, QAPair } from "@/lib/types";
 
 type Stage = "input" | "clarify" | "insufficient" | "results";
@@ -137,8 +138,8 @@ export default function Home() {
   }
 
   const isClarifyStage = stage === "clarify";
-  const placeholder = isClarifyStage
-    ? "Share your answer..."
+  const prompt = isClarifyStage
+    ? currentQuestion
     : "What are you trying to decide? Share as much or as little context as you have.";
 
   return (
@@ -147,19 +148,20 @@ export default function Home() {
         onSubmit={isClarifyStage ? handleSubmitAnswer : handleSubmitDecision}
         className="max-w-2xl w-full space-y-5"
       >
-        {isClarifyStage && (
-          <p className="font-serif text-2xl text-[var(--color-deep-slate)]">{currentQuestion}</p>
-        )}
+        <p className="font-serif text-2xl text-[var(--color-deep-slate)]">{prompt}</p>
         <textarea
           value={isClarifyStage ? fieldValue : decision}
           onChange={(e) =>
             isClarifyStage ? setFieldValue(e.target.value) : setDecision(e.target.value)
           }
-          placeholder={placeholder}
           rows={8}
           autoFocus
           className="w-full resize-none card px-5 py-4 text-base leading-relaxed placeholder:text-[var(--color-mist)] focus:outline-none focus:ring-2 focus:ring-[var(--color-clear-sky)]"
         />
+        <p className="text-sm text-[var(--color-deep-slate)]/60">
+          You&apos;ll be asked at most {MAX_CLARIFYING_QUESTIONS} clarifying questions before the
+          full analysis is put together.
+        </p>
         {error && <p className="text-sm text-red-600">{error}</p>}
         <div className="flex flex-col items-end gap-2">
           <button type="submit" disabled={loading} className="btn-primary px-6 py-3">
