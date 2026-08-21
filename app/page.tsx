@@ -158,7 +158,7 @@ export default function Home() {
           autoFocus
           className="w-full resize-none card px-5 py-4 text-base leading-relaxed placeholder:text-[var(--color-mist)] focus:outline-none focus:ring-2 focus:ring-[var(--color-clear-sky)]"
         />
-        <p className="text-sm text-[var(--color-deep-slate)]/60">
+        <p className="text-base text-[var(--color-deep-slate)]">
           You&apos;ll be asked at most {MAX_CLARIFYING_QUESTIONS} clarifying questions before the
           full analysis is put together.
         </p>
